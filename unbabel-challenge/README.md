@@ -1,4 +1,4 @@
-# unbabel-challenge
+# hello-world
 
 ## Project setup
 ```

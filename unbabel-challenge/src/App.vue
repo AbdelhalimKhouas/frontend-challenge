@@ -1,28 +1,67 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HeaderComponent headerTitle="Transcriptions" @fetchData="fetchData" @uploadData="uploadData"/>
+    <ListComponent :data="dataSource"/>
+    <AddRowBtnComponent/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HeaderComponent from './components/HeaderComponent.vue'
+import ListComponent from './components/ListComponent.vue'
+import AddRowBtnComponent from './components/AddRowBtnComponent.vue'
+import axios from "axios";
+import baseUrl from './config/environment'
+
+const api = axios.create({
+  baseURL: baseUrl
+});
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
+    HeaderComponent,
+    ListComponent,
+    AddRowBtnComponent
+  },
+  data(){
+    return{
+      dataSource: null,
+    }
+  },
+  methods: {
+     async fetchData() {
+      const response =  await api.get();
+      this.dataSource = response.data
+      console.log(this.dataSource);
+    },
+
+    async uploadData() {
+      const response =  await api.get();
+      this.dataSource = response.data
+      console.log(this.dataSource);
+    },
   }
+
 }
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500,600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+body {
+    background: #f6f7f8;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin: 10px;
+  background-color: #f6f7f8;
+  box-shadow: 0px 0px 3px 1px #bebec0;
+  padding-bottom: 30px;
 }
 </style>
