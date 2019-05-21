@@ -18,4 +18,7 @@ export default {
 img.add-btn {
     cursor: pointer;
 }
+img.add-btn:hover {
+   transform: scale(1.2);
+}
 </style>

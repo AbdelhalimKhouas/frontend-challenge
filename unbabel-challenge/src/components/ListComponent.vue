@@ -1,15 +1,17 @@
 <template v-if="loaded==true">
     <div id="list-container">
-        <div class="list-item" v-for="item in data" v-bind:key="item.id">
+        <div class="list-item" v-for="item in data" v-bind:key="item.id" v-bind:class="{'empty':(item.text === '')}">
             <div class="flex">
                 <p class="checkbpx-wrapper">
                 <input type="checkbox" :id="'checkbox'+item.id">
                 <label :for="'checkbox'+item.id"></label>
                 </p>
                 <img class="person" src="../assets/person.svg"/>
-                <p class="item-title">{{ item.voice }}</p>
+                <p contenteditable="true" @focusout="edit($event, 'voice')" class="item-title">{{ item.voice }}</p>
+                 <img class="trash" src="../assets/delete.svg"/>
             </div>
-            <p class="item-description">{{ item.text }}</p>
+           
+            <p contenteditable="true" @focusout="edit($event, 'text')" class="item-description">{{ item.text }}</p>
         </div>
     </div>
 </template>
@@ -20,6 +22,14 @@ export default {
   props:{
     data: Array,
   },
+  methods:{
+    someHandler(){
+      console.log('i am chnaging')
+    },
+    edit($event, target){
+      console.log($event.target.innerText)
+    }
+  }
 }
 </script>
 
@@ -62,8 +72,14 @@ p.item-description {
     font-size: 16px;
     color: #778195
 }
-
-
+p:focus {
+    outline-color: #859EFF;
+    outline-style: dotted;
+    outline-width: 2px;
+}
+img.trash {
+    margin-left: auto;
+}
 
 
 

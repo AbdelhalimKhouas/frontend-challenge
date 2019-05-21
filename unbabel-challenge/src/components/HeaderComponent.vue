@@ -52,4 +52,7 @@ img.fetch-btn {
     cursor: pointer;
     width: 20px;
 }
+img.fetch-btn:hover, img.uplaod-btn:hover {
+    transform: scale(1.2);
+}
 </style>

@@ -2,7 +2,7 @@
   <div id="app">
     <HeaderComponent headerTitle="Transcriptions" @fetchData="fetchData" @uploadData="uploadData"/>
     <ListComponent :data="dataSource"/>
-    <AddRowBtnComponent/>
+    <AddRowBtnComponent @addRow="addRow"/>
   </div>
 </template>
 
@@ -26,21 +26,24 @@ export default {
   },
   data(){
     return{
-      dataSource: null,
+      dataSource: [],
     }
   },
   methods: {
      async fetchData() {
       const response =  await api.get();
+      console.log(response)
       this.dataSource = response.data
       console.log(this.dataSource);
     },
 
     async uploadData() {
-      const response =  await api.get();
-      this.dataSource = response.data
-      console.log(this.dataSource);
+      api.post("", this.dataSource);
     },
+
+    addRow(){
+      this.dataSource.push({id: new Date().getTime(), voice: "", text: "" });
+    }
   }
 
 }
