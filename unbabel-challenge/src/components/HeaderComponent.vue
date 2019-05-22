@@ -18,7 +18,6 @@ export default {
              },
       fetchData(){
         this.$emit("fetchData");
-        //console.log('i am inheader');
 
       }
   }

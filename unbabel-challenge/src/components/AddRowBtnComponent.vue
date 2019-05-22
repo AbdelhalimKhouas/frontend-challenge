@@ -8,8 +8,10 @@ export default {
 
   methods:{
       addRow(){
-            this.$emit("addRow");      },
-            }
+            //send addRow event to App
+            this.$emit("addRow");
+            },
+    }
 }
 </script>
 
